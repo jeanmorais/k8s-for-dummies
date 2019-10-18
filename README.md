@@ -1,4 +1,9 @@
 # k8s-for-dummies 
+<img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
+
+----
+
+
 - [Setup](#setup)
   - [Minikube](#minikube)
 
