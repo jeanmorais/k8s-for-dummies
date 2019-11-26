@@ -68,7 +68,7 @@ $ minikube version
 minikube version: v1.5.2
 ```
 
-Com o minikube instalado, já é possível criar o cluster em uma máquina virtual, em nosso caso, provisionada através do VirtualBox.
+Com o minikube instalado, já é possível criar o cluster em uma máquina virtual, em nosso caso, provisionada através do **VirtualBox**.
 
 ```terminal
 $ minikube start
@@ -99,13 +99,15 @@ Kubernetes master is running at https://192.168.99.100:8443
 KubeDNS is running at https://192.168.99.100:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 ```
 
-Como podemos ver, temos comunicação com o cluster, e conseguimos verificar o status dos componentes instalados. Para verificar os nodes disponíveis, utilizamos o comando `kubectl get nodes`.
+Como podemos ver, temos comunicação com o cluster, e conseguimos verificar o status dos componentes instalados. Para verificar os nós disponíveis, utilizamos o comando `kubectl get nodes`.
 
+```terminal
 $ kubectl get nodes
 NAME       STATUS   ROLES    AGE     VERSION
-minikube   Ready    master   20m35s   v1.14.3
+minikube   Ready    master   20m35s   v1.15.2
+```
 
-
+Na saída acima, podemos ver que nosso cluster possui apenas um nó, que foi provisionado com o auxílio do **minikube**. Este é um cenário apenas para ambientes de desenvolvimento e testes locais. Em ambientes de produção é recomendada a utilização de múltiplos nós.
 
 
 ## Referências
