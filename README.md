@@ -31,6 +31,8 @@ O *control plane* é constituído dos seguintes componentes:
 
 **cloud-controller-manager**: Interage com o provedor de cloud (em clusters baseados em cloud), gerenciando recursos como *load balancers* e volumes de disco.
 
+![k8s-architecture](img/kubernetes_architecture.png)
+
 ### Worker node
 
 O **Worker Node** é responsável pelo deploy e execução dos contêineres de aplicação. Cada *worker node* de um cluster Kubernetes executa os seguintes componentes:
@@ -41,6 +43,7 @@ O **Worker Node** é responsável pelo deploy e execução dos contêineres de a
 
 **container runtime**: Inicia e finaliza os contêinres, além de cuidar de suas comunicações. No geral, o Docker é o mais utilizado, mas o Kubernetes aceita outros runtimes, como rkt e CRI-O.
 
+![node-components](img/node_components.png)
 
 
 # Setup
@@ -56,7 +59,56 @@ O site oficial fornece um breve tutorial para a instalação do Minikube. Basta 
 
 Os requisitos para instalação do Minikube estão [mencionados no tutorial](https://kubernetes.io/docs/tasks/tools/install-minikube/#before-you-begin), mas vale frisar:
 - Tenha um hypervisor instalado. Sugestão: [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
-- Instale o [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux) (ferramenta de linha de comando para interagir com o cluster)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux) (ferramenta de linha de comando para interagir com o cluster)
+
+Após instaladas as ferramentas mencionadas acima, verifique a versão do minikube digitando o comando.
+
+```terminal
+$ minikube version
+minikube version: v1.5.2
+```
+
+Com o minikube instalado, já é possível criar o cluster em uma máquina virtual, em nosso caso, provisionada através do VirtualBox.
+
+```terminal
+$ minikube start
+😄  minikube v1.5.2 on linux (amd64)
+🔥  Creating virtualbox VM (CPUs=2, Memory=2048MB, Disk=20000MB) ...
+🐳  Configuring environment for Kubernetes v1.15.2 on Docker 18.09.8
+🚜  Pulling images ...
+🚀  Launching Kubernetes ...
+⌛  Verifying: apiserver proxy etcd scheduler controller dns
+🏄  Done! kubectl is now configured to use "minikube"
+```
+
+Após o setup inicial do cluster, podemos verificar o status do cluster.
+
+```terminal
+$ minikube status
+host: Running
+kubelet: Running
+apiserver: Running
+kubectl: Correctly Configured: pointing to minikube-vm at 192.168.99.100
+```
+
+Agora vamos utilizar o comando `kubectl cluster-info`, para checar se o kubectl consegue se comunicar com o cluster, e verificar se tudo está funcionando corretamente.
+
+```terminal
+$ kubectl cluster-info
+Kubernetes master is running at https://192.168.99.100:8443
+KubeDNS is running at https://192.168.99.100:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+```
+
+Como podemos ver, temos comunicação com o cluster, e conseguimos verificar o status dos componentes instalados. Para verificar os nodes disponíveis, utilizamos o comando `kubectl get nodes`.
+
+$ kubectl get nodes
+NAME       STATUS   ROLES    AGE     VERSION
+minikube   Ready    master   20m35s   v1.14.3
 
 
 
+
+## Referências
+
+* [Documentação Oficial](https://kubernetes.io/docs/concepts/)
+* [Cloud Native DevOps with Kubernetes [Book] - O'Reilly](https://www.oreilly.com/library/view/cloud-native-devops/9781492040750/)
