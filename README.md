@@ -3,8 +3,14 @@
 
 ----
 
+- [Introdução](#introdução)
+  - [Arquitetura de um cluster](#arquitetura-de-um-cluster)
+    - [Control Plane / Master node](#control-plane--master-node)
+    - [Worker node](#worker-node)
 - [Setup](#setup)
   - [Minikube](#minikube)
+    - [Instalação](#instalação)
+- [Referências](#referências)
 
 # Introdução
 
@@ -55,7 +61,7 @@ O [Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/) é
 ### Instalação
 
 O site oficial fornece um breve tutorial para a instalação do Minikube. Basta acessar [Install Minikube
-](https://kubernetes.io/docs/tasks/tools/install-minikube/).
+](https://minikube.sigs.k8s.io/docs/start/).
 
 Os requisitos para instalação do Minikube estão [mencionados no tutorial](https://kubernetes.io/docs/tasks/tools/install-minikube/#before-you-begin), mas vale frisar:
 - Tenha um hypervisor instalado. Sugestão: [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
@@ -65,19 +71,31 @@ Após instaladas as ferramentas mencionadas acima, verifique a versão do miniku
 
 ```terminal
 $ minikube version
-minikube version: v1.5.2
+minikube version: v1.6.1
+commit: 42a9df4854dcea40ec187b6b8f9a910c6038f81a
 ```
 
 Com o minikube instalado, já é possível criar o cluster em uma máquina virtual, em nosso caso, provisionada através do **VirtualBox**.
 
+Defina o VirtualBox como driver default, para que o minikube possa provisionar uma VM através dele:
+
+```terminal
+$ minikube config set vm-driver virtualbox
+```
+
+E então, podemos iniciar o cluster.
+
 ```terminal
 $ minikube start
-😄  minikube v1.5.2 on linux (amd64)
-🔥  Creating virtualbox VM (CPUs=2, Memory=2048MB, Disk=20000MB) ...
-🐳  Configuring environment for Kubernetes v1.15.2 on Docker 18.09.8
+😄  minikube v1.6.1 on Linuxmint 19
+✨  Automatically selected the 'virtualbox' driver (alternates: [none])
+🔥  Creating virtualbox VM (CPUs=2, Memory=2000MB, Disk=20000MB) ...
+🐳  Preparing Kubernetes v1.17.0 on Docker '19.03.5' ...
+💾  Downloading kubeadm v1.17.0
+💾  Downloading kubelet v1.17.0
 🚜  Pulling images ...
-🚀  Launching Kubernetes ...
-⌛  Verifying: apiserver proxy etcd scheduler controller dns
+🚀  Launching Kubernetes ... 
+⌛  Waiting for cluster to come online ...
 🏄  Done! kubectl is now configured to use "minikube"
 ```
 
@@ -88,7 +106,7 @@ $ minikube status
 host: Running
 kubelet: Running
 apiserver: Running
-kubectl: Correctly Configured: pointing to minikube-vm at 192.168.99.100
+kubeconfig: Configured
 ```
 
 Agora vamos utilizar o comando `kubectl cluster-info`, para checar se o kubectl consegue se comunicar com o cluster, e verificar se tudo está funcionando corretamente.
@@ -103,8 +121,8 @@ Como podemos ver, temos comunicação com o cluster, e conseguimos verificar o s
 
 ```terminal
 $ kubectl get nodes
-NAME       STATUS   ROLES    AGE     VERSION
-minikube   Ready    master   20m35s   v1.15.2
+NAME       STATUS   ROLES    AGE   VERSION
+minikube   Ready    master   11m   v1.17.0
 ```
 
 Na saída acima, podemos ver que nosso cluster possui apenas um nó, que foi provisionado com o auxílio do **minikube**. Este é um cenário apenas para ambientes de desenvolvimento e testes locais. Em ambientes de produção é recomendada a utilização de múltiplos nós.
