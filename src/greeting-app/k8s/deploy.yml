@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    namespace: default
+    name: greeting-app
+    labels:
+        app: greeting-app
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: greeting-app
+    template:
+        metadata:
+            labels:
+                app: greeting-app
+        spec:
+            containers:
+                - name: greeting-app
+                  image: jeanmorais/greeting-app:latest
+                  ports:
+                      - containerPort: 8080
+                        name: greeting-svc
+                  imagePullPolicy: Always
+                  envFrom:
+                      - configMapRef:
+                            name: greeting-config
+                  resources:
+                      requests:
+                          cpu: 100m
+                          memory: 400Mi
+                      limits:
+                          cpu: 400m
+                          memory: 800Mi

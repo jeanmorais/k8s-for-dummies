@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  labels:
+    name: greeting-app
+  name: greeting-app
+spec:
+  ports:
+    - port: 80
+      name: service
+      targetPort: greeting-svc
+      protocol: TCP
+  selector:
+    app: greeting-app
