@@ -10,6 +10,7 @@
 - [Setup](#setup)
   - [Minikube](#minikube)
     - [Instalação](#instalação)
+- [Labs](#labs)
 - [Referências](#referências)
 
 # Introdução
@@ -67,7 +68,7 @@ Os requisitos para instalação do Minikube estão [mencionados no tutorial](htt
 - Tenha um hypervisor instalado. Sugestão: [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux) (ferramenta de linha de comando para interagir com o cluster)
 
-Após instaladas as ferramentas mencionadas acima, verifique a versão do minikube digitando o comando.
+Após instaladas as ferramentas mencionadas acima, verifique a versão do minikube digitando o comando:
 
 ```terminal
 $ minikube version
@@ -127,6 +128,11 @@ minikube   Ready    master   11m   v1.17.0
 
 Na saída acima, podemos ver que nosso cluster possui apenas um nó, que foi provisionado com o auxílio do **minikube**. Este é um cenário apenas para ambientes de desenvolvimento e testes locais. Em ambientes de produção é recomendada a utilização de múltiplos nós.
 
+## Labs
+
+Para colocar em práticas os conceitos abordados durante o treinamento, temos alguns labs disponíveis:
+- [Lab 1](/lab1)
+- [Lab 2](/lab2)
 
 ## Referências
 

@@ -6,7 +6,7 @@ metadata:
     labels:
         app: greeting-app
 spec:
-    replicas: 3
+    replicas: 1
     selector:
         matchLabels:
             app: greeting-app
@@ -28,7 +28,7 @@ spec:
                   resources:
                       requests:
                           cpu: 100m
-                          memory: 400Mi
+                          memory: 50Mi
                       limits:
-                          cpu: 400m
-                          memory: 800Mi
+                          cpu: 200m
+                          memory: 100Mi
