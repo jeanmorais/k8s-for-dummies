@@ -1,5 +1,6 @@
-# k8s-for-dummies 
-<img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
+# neotech-k8s-101
+
+<img src="img/k8s_rocket.png">
 
 ----
 
@@ -21,7 +22,7 @@
 
 ## Arquitetura de um cluster
 
-O Kubernetes conecta diversos servidores em um cluster, sendo ele um grupo de nós interconectados. Podemos considerar que o cluster consiste em dois elementos básicos: ***Master node (Control Plane)*** e ***Worker node***. 
+O Kubernetes conecta diversos servidores em um cluster, sendo ele um grupo de nós interconectados. Podemos considerar que o cluster consiste em dois elementos básicos: ***Master node (Control Plane)*** e ***Worker node***.
 
 ### Control Plane / Master node
 O **Control Plane** é o cérebro do cluster Kubernetes, sendo responsável pelo gerenciamento do cluster e também pela coordenação dos *worker nodes*, onde todos os serviços estão em execução. As principais tarefas do *Control Plane* são  são atender requisões de API, escalonar contêineres, e gerenciar *Services*.
@@ -34,7 +35,7 @@ O *control plane* é constituído dos seguintes componentes:
 
 **kube-scheduler**: Decide onde executar os Pods recém-criados.
 
-**kube-controller-manager**: É responsável pela execução dos controladores de recursos, como *DaemonSets*, *Deployments*, *ReplicaSets*, etc. 
+**kube-controller-manager**: É responsável pela execução dos controladores de recursos, como *DaemonSets*, *Deployments*, *ReplicaSets*, etc.
 
 **cloud-controller-manager**: Interage com o provedor de cloud (em clusters baseados em cloud), gerenciando recursos como *load balancers* e volumes de disco.
 
@@ -95,7 +96,7 @@ $ minikube start
 💾  Downloading kubeadm v1.17.0
 💾  Downloading kubelet v1.17.0
 🚜  Pulling images ...
-🚀  Launching Kubernetes ... 
+🚀  Launching Kubernetes ...
 ⌛  Waiting for cluster to come online ...
 🏄  Done! kubectl is now configured to use "minikube"
 ```
@@ -137,4 +138,5 @@ Para colocar em práticas os conceitos abordados durante o treinamento, temos al
 ## Referências
 
 * [Documentação Oficial](https://kubernetes.io/docs/concepts/)
+* [Large-scale cluster management at Google with Borg](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43438.pdf)
 * [Cloud Native DevOps with Kubernetes [Book] - O'Reilly](https://www.oreilly.com/library/view/cloud-native-devops/9781492040750/)
