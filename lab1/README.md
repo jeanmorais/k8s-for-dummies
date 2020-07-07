@@ -14,7 +14,7 @@ Também iremos explorar o uso da command line responsável pela comunicação co
 
 ## API
 
-A API "greeting-app" é escrita em Go, e possui apenas um endpoint que retorna uma saudação em diversos idiomas:
+A API "greeting-app" é escrita em Go, e possui apenas um endpoint que retorna na index uma saudação em diversos idiomas:
 
 * GET `http://<host>/`
 
@@ -60,17 +60,17 @@ O minikube, como é uma ferramenta voltada para desenvolvimento, já possui um [
 minikube addons enable ingress
 ```
 
-Verifique se o NGINX Ingress está em execução
+8. Verifique se o NGINX Ingress está em execução
 ```terminal
 kubectl get pods -n kube-system
 ```
 
-8. Realize a criação do [Ingress Resource](https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource), para que possamos expor o Service para fora do cluster
+9. Realize a criação do [Ingress Resource](https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource), para que possamos expor o Service para fora do cluster
 ```terminal
 kubectl apply -f ingress.yml
 ```
 
-9. Requisitando a API através do ingress
+10. Requisitando a API através do ingress
 ```terminal
 curl <minikube-ip>/api/greetings
 ```
